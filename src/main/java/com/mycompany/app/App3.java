@@ -6,4 +6,7 @@ public void fn2()
 public void fn()
 {
 }
+public void fn3()
+{
+}
 }
