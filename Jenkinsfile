@@ -28,12 +28,12 @@ node {
          }
       }
    }
-
+   
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-
+   
      stage('Execute JAR') {
       // Run the maven build
       withEnv(["MVN_HOME=$mvnHome"]) {
