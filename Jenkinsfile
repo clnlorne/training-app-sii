@@ -29,6 +29,14 @@ node {
       }
    }
    
+   stage('Publish Artefact') {
+   if (isUnix()) {
+   sh "'${mvnHome}/bin/mvn' -DdeployOnly deploy -s "
+   } else {
+      bat(/"${mvnHome}\bin\mvn" -Dmaven.test.skip=true deploy -s "C:\apache-maven-3.6.3-bin\conf\settings.xml"/)
+   }
+}
+   
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
@@ -38,7 +46,7 @@ node {
       // Run the maven build
       withEnv(["MVN_HOME=$mvnHome"]) {
          if (isUnix()) {
-            sh 'java -jar target/training-app-1.0-SNAPSHOT.jar'
+            sh 'java -jar target/training-app-1.0.jar'
          } else {
             bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
          }
