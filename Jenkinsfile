@@ -43,7 +43,7 @@ node {
       archiveArtifacts 'target/*.jar'
    }
    
-     stage('Execute JAR') {
+    stage('Execute JAR') {
       // Run the maven build
       withEnv(["MVN_HOME=$mvnHome"]) {
          if (isUnix()) {
