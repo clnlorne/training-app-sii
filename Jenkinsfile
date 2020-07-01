@@ -31,7 +31,7 @@ node {
    
    stage('Publish Artefact') {
    if (isUnix()) {
-   sh "'${mvnHome}/bin/mvn' -DdeployOnly deploy -s "
+    sh "'${mvnHome}/bin/mvn' -DdeployOnly deploy -s '/home/stagiaire/tools/apache-maven-3.6.3/conf/settings.xml'"
    } else {
       bat(/"${mvnHome}\bin\mvn" -Dmaven.test.skip=true deploy -s "C:\apache-maven-3.6.3-bin\conf\settings.xml"/)
    }
